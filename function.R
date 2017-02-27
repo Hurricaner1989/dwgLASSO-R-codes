@@ -1,4 +1,4 @@
-# functions defined to help demo.R
+# Functions defined to help demo.R
 #
 # Reference:
 # [1] Zuo, Yiming, Yi Cui, Guoqiang Yu, Ruijiang Li, and Habtom W. Ressom. "Incorporating prior 
@@ -17,12 +17,10 @@ group <- function(pvalue_idx, X, c, y) {
 }
 
 ## Create log likelihood error function 
-loglik_ave <- function(data, mu, sigma) {
+loglik_ave <- function(data, theta){
     loglik <- c()
-    for (i in 1:dim(data)[1]){
-        loglik <- c(loglik, -dmvnorm(data[i,], mu, sigma, log=T))
-    }
-    sum(loglik) / dim(data)[1]   
+    loglik <- log(det(theta))-sum(diag(var(data)%*%theta))
+    -loglik
 }
 
 ## Draw error curve
