@@ -62,7 +62,7 @@ sum(W!=0) # test how many entries have non-zero value, 238 in this list
 rm(i, j, k, w_list)
 
 ## Divide data into low risk and high risk groups
-# Define low risk (data_low: survival time more than 60 months) and high risk groups 
+# define low risk (data_low: survival time more than 60 months) and high risk groups 
 # (data_high: survival time less than 60 months and dead)
 data <- group(pvalue_adjust_idx, X, c, y)
 rm(X, y, c)
@@ -84,7 +84,7 @@ Ones <- matrix(rep(1, ncol(data_low)), nrow = ncol(data_low), ncol = ncol(data_l
 error <- choose_rho(data_low, n_fold, rho)
 # chosse optimal rho 
 rho[error$log.cv == min(error$log.cv)] # rho based on minimum rule
-abline(v = rho[error$log.cv == min(error$log.cv)], col = "red", lty=3)
+abline(v = rho[error$log.cv == min(error$log.cv)], col = "red", lty = 3)
 # one standard error rule
 abline(h = min(error$log.cv) + error$log.rho[error$log.cv == min(error$log.cv)], col = "blue") 
 rho
@@ -112,7 +112,7 @@ Ones <- matrix(rep(1, ncol(data_low)), nrow = ncol(data_low), ncol = ncol(data_l
 error <- choose_rho(data_high, n_fold, rho)
 # chosse optimal rho 
 rho[error$log.cv == min(error$log.cv)] # rho based on minimum rule
-abline(v = rho[error$log.cv == min(error$log.cv)], col = "red", lty=3)
+abline(v = rho[error$log.cv == min(error$log.cv)], col = "red", lty = 3)
 # one standard error rule
 abline(h = min(error$log.cv) + error$log.rho[error$log.cv == min(error$log.cv)], col = "blue") 
 rho
