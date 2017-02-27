@@ -10,7 +10,7 @@
 ## Start clean
 rm(list = ls())
 
-## make sure current working directory is dwgLASSO package
+## Make sure current working directory is dwgLASSO package
 getwd()
 
 ## Load data: one microarray dataset with the survival records of patients
@@ -20,7 +20,7 @@ getwd()
 # c represents whether the patient is alive (0) or dead (1) up to the observation time
 load("Data/Data.RData")
 
-## Load R package
+## Load R packages
 # glasso 
 library("glasso") # need install 
 # mvtnorm to compute log likelihood error
