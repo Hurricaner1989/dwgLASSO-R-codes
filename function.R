@@ -7,7 +7,7 @@
 #
 # Copyright 2015-2017, Yiming Zuo.
 
-## create group function to divide data into low risk and high risk groups
+## Create group function to divide data into low risk and high risk groups
 group <- function(pvalue_idx, X, c, y) {
     X_pn <- t(X)[pvalue_idx,]
     data_low <- X_pn[, which(y > 60)]
@@ -16,7 +16,7 @@ group <- function(pvalue_idx, X, c, y) {
     return(data_list)
 }
 
-## create log likelihood error function 
+## Create log likelihood error function 
 loglik_ave <- function(data, mu, sigma) {
     loglik <- c()
     for (i in 1:dim(data)[1]){
@@ -25,11 +25,11 @@ loglik_ave <- function(data, mu, sigma) {
     sum(loglik) / dim(data)[1]   
 }
 
-## draw error curve
+## Draw error curve
 choose_rho <- function(data, n_fold, rho) {
-    # Randomly shuffle the data
+    # randomly shuffle the data
     Data_low <- data[sample(nrow(data)),]
-    # Create 10 equally size folds
+    # create n_fold equally size folds
     folds <- cut(seq(1, nrow(Data_low)), breaks = n_fold, labels = FALSE)
     # tune parameters
     d <- ncol(Data_low)
@@ -39,14 +39,14 @@ choose_rho <- function(data, n_fold, rho) {
     pb <- txtProgressBar(min = 0, max = length(rho), style = 3) # create progress bar
     for(i in 1:length(rho)){
         Sys.sleep(0.1)
-        #Perform 10 fold cross validation
+        # perform n_fold cross validation
         loglik <- c()
         for(j in 1:n_fold){
-            #Segement your data by fold using the which() function 
+            # segement your data by fold using the which() function 
             testIndexes <- which(folds == j, arr.ind=TRUE)
             testData <- Data_low[testIndexes, ]
             trainData <- Data_low[-testIndexes, ]
-            #Use test and train data partitions however you desire...
+            # use test and train data partitions however you desire...
             mu <- apply(t(trainData), 1, mean)
             cov <- var(trainData) # compute the covariance matrix
             pre <- glasso(cov, rho = as.matrix(rho[i] * (Ones - W)))
