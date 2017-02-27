@@ -48,7 +48,7 @@ choose_rho <- function(data, n_fold, rho) {
             mu <- apply(t(trainData), 1, mean)
             cov <- var(trainData) # compute the covariance matrix
             pre <- glasso(cov, rho = as.matrix(rho[i] * (Ones - W)))
-            loglik <- c(loglik, loglik_ave(testData, mu, pre$w))  
+            loglik <- c(loglik, loglik_ave(testData, pre$wi))  
         }
         loglik_cv <- c(loglik_cv, sum(loglik) / n_fold)
         loglik_rho <- c(loglik_rho, sd(loglik) / sqrt(n_fold))
