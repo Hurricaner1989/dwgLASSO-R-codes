@@ -9,7 +9,7 @@
 
 ## Create group function to divide data into low risk and high risk groups
 group <- function(pvalue_idx, X, c, y) {
-    X_pn <- t(X)[pvalue_idx,]
+    X_pn <- t(X)[pvalue_idx, ]
     data_low <- X_pn[, which(y > 60)]
     data_high <- X_pn[, which((c == 1) & (y < 60))]
     data_list <- list("low.risk.group" = data_low, "high.risk.group" = data_high)
@@ -19,29 +19,29 @@ group <- function(pvalue_idx, X, c, y) {
 ## Create log likelihood error function 
 loglik_ave <- function(data, theta){
     loglik <- c()
-    loglik <- log(det(theta))-sum(diag(var(data)%*%theta))
+    loglik <- log(det(theta)) - sum(diag(var(data) %*% theta))
     -loglik
 }
 
 ## Draw error curve
 choose_rho <- function(data, n_fold, rho) {
     # randomly shuffle the data
-    Data_low <- data[sample(nrow(data)),]
+    Data_low <- data[sample(nrow(data)), ]
     # create n_fold equally size folds
     folds <- cut(seq(1, nrow(Data_low)), breaks = n_fold, labels = FALSE)
     # tune parameters
     d <- ncol(Data_low)
-    Ones <- matrix(rep(1,d), nrow = d, ncol = d)
+    Ones <- matrix(rep(1, d), nrow = d, ncol = d)
     loglik_cv <- c()
     loglik_rho <- c()
     pb <- txtProgressBar(min = 0, max = length(rho), style = 3) # create progress bar
-    for(i in 1:length(rho)){
+    for(i in 1 : length(rho)){
         Sys.sleep(0.1)
         # perform n_fold cross validation
         loglik <- c()
-        for(j in 1:n_fold){
+        for(j in 1 : n_fold){
             # segement your data by fold using the which() function 
-            testIndexes <- which(folds == j, arr.ind=TRUE)
+            testIndexes <- which(folds == j, arr.ind = TRUE)
             testData <- Data_low[testIndexes, ]
             trainData <- Data_low[-testIndexes, ]
             # use test and train data partitions however you desire...

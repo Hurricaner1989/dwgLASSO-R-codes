@@ -1,4 +1,4 @@
-# A demo of dwgLASSO to prioritize gene list for surival time prediction 
+# A demo of dwgLASSO to prioritize gene list based on dwgLASSO 
 #
 # Reference:
 # [1] Zuo, Yiming, Yi Cui, Guoqiang Yu, Ruijiang Li, and Habtom W. Ressom. "Incorporating prior 
@@ -20,11 +20,9 @@ getwd()
 # c represents whether the patient is alive (0) or dead (1) up to the observation time
 load("Data/Data.RData")
 
-## Load R packages
+## Load R package
 # glasso 
 library("glasso") # need install 
-# mvtnorm to compute log likelihood error
-library("mvtnorm") # need install
 
 ## Load functions
 source("function.R")
@@ -145,6 +143,6 @@ degree_diff_idx <- sort(dns, decreasing = T, index.return=T)$ix
 sig_l_s$gene.symbol[degree_diff_idx[1:10]] # top 10 genes based on dwgLASSO
 sig_l_s$adjusted.pvalue[degree_diff_idx[1:10]] # their adjusted p-values 
 
-## save top 10 significant genes after prioritization based on dwgLASSO
+## save top 10 genes after prioritization based on dwgLASSO
 write.table(sig_l_s[degree_diff_idx[1:10],], file = "sig10table_dwgLASSO.csv", sep=",", quote = F, 
             row.names = F, col.names = F)
