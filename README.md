@@ -8,5 +8,5 @@ This package implements dwgLASSO algorithm from Zuo *et*. *al*.'s BMC Bioinforma
 
 I submit version 1.0 which contains one demo (i.e., **demo.R** and files in Data folder) and one **function.R**. 
 
-* **demo.R** implements the proposed dwgLASSO algorithm in BMC Bioinformatics paper in a setting for survival time prediction.
+* **demo.R** implements the proposed dwgLASSO algorithm in BMC Bioinformatics paper using microarray data.
 * **function.R** implements three helper functions that are used in **demo.R**.
