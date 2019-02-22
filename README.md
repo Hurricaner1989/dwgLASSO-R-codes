@@ -1,6 +1,6 @@
-# dwgLASSO R package
+# dwgLASSO R codes
 
-This package implements dwgLASSO algorithm from Zuo *et*. *al*.'s BMC Bioinformatics paper: **Incorporating prior biological knowledge for network-based differential gene expression analysis using differentially weighted graphical LASSO** (PMID: 28187708). It contains one demo (i.e., **demo.R** and files in Data folder) and one **function.R**. 
+These R codes implement dwgLASSO algorithm from Zuo *et*. *al*.'s BMC Bioinformatics paper: **Incorporating prior biological knowledge for network-based differential gene expression analysis using differentially weighted graphical LASSO** (PMID: 28187708). It contains one demo (i.e., **demo.R** and files in Data folder) and one **function.R**. 
 
 ## Update
 
